@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeriel Jireh Quimbo | CX &amp; Email Marketing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F7F4EF; --dark: #111111; --mid: #444444; --light: #888888;
+      --accent: #C84B31; --accent2: #E8A87C; --white: #FFFFFF; --border: #E2DDD6;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 4rem; background: rgba(247,244,239,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.04em; color: var(--dark); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; width: fit-content; margin-bottom: 2rem; }
+    .hero-tag::before { content: "\25CF"; font-size: 0.5rem; }
+    .hero-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    .hero-name span { color: var(--accent); }
+    .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(1rem, 1.8vw, 1.4rem); font-weight: 600; color: var(--mid); letter-spacing: 0.02em; margin-bottom: 2rem; }
+    .hero-bio { font-size: 1rem; line-height: 1.75; color: var(--mid); max-width: 480px; margin-bottom: 2.5rem; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { background: var(--accent); color: #fff; padding: 0.9rem 2rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; }
+    .btn-primary:hover { background: #a83822; transform: translateY(-2px); }
+    .btn-outline { border: 1.5px solid var(--dark); color: var(--dark); padding: 0.9rem 2rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; }
+    .btn-outline:hover { background: var(--dark); color: var(--cream); transform: translateY(-2px); }
+
+    .hero-right { background: var(--dark); display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem; position: relative; overflow: hidden; }
+    .hero-right::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(200,75,49,0.3) 0%, transparent 70%); border-radius: 50%; }
+    .hero-right::after { content: ''; position: absolute; bottom: -80px; left: -80px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(232,168,124,0.2) 0%, transparent 70%); border-radius: 50%; }
+    .hero-stats-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); margin-bottom: 2rem; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; position: relative; z-index: 1; }
+    .stat-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; }
+    .stat-value { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 800; color: #fff; line-height: 1; margin-bottom: 0.4rem; }
+    .stat-value span { color: var(--accent); }
+    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.4; }
+
+    /* SECTIONS */
+    section { padding: 6rem 4rem; }
+    .section-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .section-subtitle { font-size: 1rem; color: var(--mid); line-height: 1.7; max-width: 560px; }
+    .section-header { margin-bottom: 3.5rem; }
+    .centered { text-align: center; }
+    .centered .section-subtitle { margin: 0 auto; }
+
+    /* WHY */
+    .why-section { background: var(--dark); color: #fff; }
+    .why-section .section-eyebrow { color: var(--accent2); }
+    .why-section .section-title { color: #fff; }
+    .why-section .section-subtitle { color: rgba(255,255,255,0.55); }
+    .three-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .two-centered { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; }
+    .two-centered > * { flex: 0 0 calc(33.333% - 0.75rem); max-width: 380px; }
+    .why-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 2rem; transition: all 0.3s; position: relative; overflow: hidden; }
+    .why-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .why-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-4px); }
+    .why-card:hover::before { transform: scaleX(1); }
+    .why-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+    .why-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+    .why-card p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
+
+    /* SERVICES */
+    .service-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; transition: all 0.3s; }
+    .service-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(200,75,49,0.1); }
+    .service-number { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem; }
+    .service-card h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .service-card p { font-size: 0.88rem; color: var(--mid); line-height: 1.65; }
+
+    /* TOOLS */
+    .tools-section { background: var(--white); text-align: center; }
+    .tools-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; justify-content: center; }
+    .tools-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); margin-bottom: 1rem; }
+    .tool-pill { background: var(--cream); border: 1.5px solid var(--border); border-radius: 100px; padding: 0.6rem 1.4rem; font-size: 0.88rem; font-weight: 500; transition: all 0.2s; }
+    .tool-pill:hover { border-color: var(--accent); color: var(--accent); }
+    .industry-pill { background: var(--dark); color: #fff; border-radius: 100px; padding: 0.6rem 1.4rem; font-size: 0.88rem; font-weight: 500; }
+
+    /* PORTFOLIO */
+    .portfolio-section { background: var(--cream); }
+    .portfolio-group { margin-bottom: 3.5rem; }
+    .portfolio-group-label { display: flex; align-items: center; justify-content: center; gap: 1rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); margin-bottom: 1.5rem; }
+    .portfolio-group-label::before, .portfolio-group-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .portfolio-grid { display: flex; flex-wrap: wrap; gap: 1.25rem; justify-content: center; }
+    .portfolio-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: all 0.3s; position: relative; overflow: hidden; text-align: center; flex: 0 0 calc(33.333% - 1rem); max-width: 380px; min-width: 260px; }
+    .portfolio-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+    .portfolio-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); }
+    .portfolio-card:hover::after { transform: scaleX(1); }
+    .card-type { display: inline-flex; align-items: center; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 100px; margin-bottom: 1rem; }
+    .card-type.email { background: #EEF2FF; color: #4F46E5; }
+    .card-type.sms { background: #FFF4EE; color: var(--accent); }
+    .card-type.bfcm { background: #FFF8E1; color: #D97706; }
+    .portfolio-card h3 { font-family: 'Syne', sans-serif; font-size: 0.98rem; font-weight: 700; line-height: 1.35; margin-bottom: 1.25rem; }
+    .card-metrics { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
+    .metric { background: var(--cream); border-radius: 8px; padding: 0.5rem 0.8rem; }
+    .metric-value { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; color: var(--dark); line-height: 1; }
+    .metric-value.hi { color: var(--accent); }
+    .metric-label { font-size: 0.68rem; color: var(--light); margin-top: 0.15rem; }
+    .bfcm-note { background: linear-gradient(135deg, #FFF4EE, #FFF8E1); border: 1px solid #FFD4B2; border-radius: 12px; padding: 1.25rem 1.5rem; font-size: 0.88rem; color: var(--mid); line-height: 1.6; margin-top: 2rem; display: flex; gap: 0.75rem; align-items: flex-start; }
+    .bfcm-note::before { content: '\26A1'; font-size: 1.1rem; flex-shrink: 0; }
+
+    /* CONTACT */
+    .contact-section { background: var(--dark); color: #fff; text-align: center; }
+    .contact-section .section-title { color: #fff; font-size: clamp(2.5rem, 4vw, 4rem); }
+    .contact-section .section-subtitle { color: rgba(255,255,255,0.5); margin: 0 auto 3rem; }
+    .contact-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    .contact-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem 2rem; min-width: 200px; transition: all 0.2s; text-decoration: none; color: #fff; }
+    .contact-item:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
+    .contact-item-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .contact-item-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.25rem; }
+    .contact-item-value { font-size: 0.9rem; font-weight: 600; }
+
+    footer { background: #0A0A0A; color: rgba(255,255,255,0.3); text-align: center; padding: 2rem; font-size: 0.82rem; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.25rem 2rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left, .hero-right { padding: 4rem 2rem; }
+      section { padding: 4rem 2rem; }
+      .three-grid { grid-template-columns: 1fr; }
+      .two-centered { flex-direction: column; align-items: center; }
+      .two-centered > * { flex: none; width: 100%; max-width: 100%; }
+      .portfolio-card { flex: 0 0 100%; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">JJQ</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-left">
+    <div class="hero-tag">Available for Projects</div>
+    <h1 class="hero-name">Jeriel Jireh<br><span>Quimbo</span></h1>
+    <p class="hero-title">Customer Experience Specialist &amp; Email Marketing Freelance</p>
+    <p class="hero-bio">3 years of turning inboxes into revenue engines and turning tough customer moments into loyal fans. I write every word myself, no templates, no shortcuts, and own campaigns end-to-end from strategy and copy to setup and reporting. Known for a tone that feels human, copy that converts, and the rare ability to cover email, SMS, and customer service all under one roof.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Work With Me</a>
+      <a href="#work" class="btn-outline">See My Work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <p class="hero-stats-label">At a Glance</p>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-value"><span>69%</span></div><div class="stat-label">Peak Email Open Rate</div></div>
+      <div class="stat-card"><div class="stat-value">$207K</div><div class="stat-label">SMS Revenue Generated</div></div>
+      <div class="stat-card"><div class="stat-value">761K</div><div class="stat-label">SMS Messages Sent</div></div>
+      <div class="stat-card"><div class="stat-value"><span>11x</span></div><div class="stat-label">Overall SMS ROI</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY WORK WITH ME -->
+<section class="why-section">
+  <div class="section-header centered">
+    <p class="section-eyebrow">Why Work With Me</p>
+    <h2 class="section-title">One person. All channels covered.</h2>
+    <p class="section-subtitle">Most specialists do one thing. I do all of it and I do it well.</p>
+  </div>
+  <div class="three-grid">
+    <div class="why-card">
+      <div class="why-icon">&#9997;&#65039;</div>
+      <h3>All Copy Written By Me</h3>
+      <p>Every subject line, every SMS, every response crafted from scratch. No generic templates, no AI filler. Real words that sound like a real human.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#128257;</div>
+      <h3>True End-to-End Ownership</h3>
+      <p>Strategy, copywriting, platform setup, send, reporting. I handle the full lifecycle so nothing falls through the cracks.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#128172;</div>
+      <h3>Praised for Tone &amp; Clarity</h3>
+      <p>Clients and managers have specifically called out my writing voice. Warmth, clarity, and confidence that resonates with real people.</p>
+    </div>
+  </div>
+  <div class="two-centered">
+    <div class="why-card">
+      <div class="why-icon">&#128737;&#65039;</div>
+      <h3>Grace Under Pressure</h3>
+      <p>Tough customers, urgent escalations, high-stakes moments handled with empathy, professionalism, and a calm that turns frustration into trust.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#128225;</div>
+      <h3>Multi-Channel Fluency</h3>
+      <p>Email, SMS, live chat, customer service. I move fluidly across all channels with consistent brand voice and sharp execution.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="background:#fff;">
+  <div class="section-header centered">
+    <p class="section-eyebrow">Services</p>
+    <h2 class="section-title">What I Do</h2>
+    <p class="section-subtitle">Full-service CX and marketing support, from the first touchpoint to the final conversion.</p>
+  </div>
+  <div class="three-grid">
+    <div class="service-card">
+      <div class="service-number">01</div>
+      <h3>Email Campaign Strategy &amp; Copywriting</h3>
+      <p>Newsletters, drip sequences, promotional campaigns written from scratch. I develop the angle, write the copy, set up the flow, and report on the results.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-number">02</div>
+      <h3>SMS Marketing</h3>
+      <p>Revenue-driven SMS campaigns and automations via Postscript. From campaign strategy to copy to send-time optimization, with proven ROI to back it up.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-number">03</div>
+      <h3>Customer Service via Email</h3>
+      <p>Ticketing, response management, and escalation handling with consistent brand tone. Fast, empathetic, and always on-brand.</p>
+    </div>
+  </div>
+  <div class="two-centered">
+    <div class="service-card">
+      <div class="service-number">04</div>
+      <h3>Live Chat Support</h3>
+      <p>Real-time issue resolution with a human touch. I keep response times tight and brand voice consistent, even in the most hectic moments.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-number">05</div>
+      <h3>SMS Customer Communication</h3>
+      <p>Transactional messages, follow-ups, and re-engagement sequences that feel personal, not automated. Conversion-focused and subscriber-friendly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools-section" id="tools">
+  <div class="section-header centered">
+    <p class="section-eyebrow">Stack &amp; Experience</p>
+    <h2 class="section-title">Tools &amp; Industries</h2>
+  </div>
+  <p class="tools-label">Platforms</p>
+  <div class="tools-row">
+    <span class="tool-pill">Klaviyo</span>
+    <span class="tool-pill">Postscript</span>
+    <span class="tool-pill">Gorgias</span>
+    <span class="tool-pill">Intercom</span>
+  </div>
+  <p class="tools-label" style="margin-top:2rem;">Industries</p>
+  <div class="tools-row">
+    <span class="industry-pill">E-commerce</span>
+    <span class="industry-pill">Retail</span>
+    <span class="industry-pill">Wellness</span>
+    <span class="industry-pill">Real Estate</span>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio-section" id="work">
+  <div class="section-header centered">
+    <p class="section-eyebrow">Portfolio</p>
+    <h2 class="section-title">Real Campaigns. Real Numbers.</h2>
+    <p class="section-subtitle">A selection of campaigns I wrote, set up, and reported on, across email and SMS, everyday sends and peak season.</p>
+  </div>
+
+  <div class="portfolio-group">
+    <div class="portfolio-group-label">&#128247; Email · Everyday Campaigns</div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <span class="card-type email">Email</span>
+        <h3>"Guilty of Having Bad Breath?"</h3>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-value hi">69.03%</div><div class="metric-label">Open Rate</div></div>
+          <div class="metric"><div class="metric-value">29,155</div><div class="metric-label">Recipients</div></div>
+          <div class="metric"><div class="metric-value">$9,878</div><div class="metric-label">Revenue</div></div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <span class="card-type email">Email</span>
+        <h3>"Gifting Focused" Holiday Campaign</h3>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-value hi">63.28%</div><div class="metric-label">Open Rate</div></div>
+          <div class="metric"><div class="metric-value">31,134</div><div class="metric-label">Recipients</div></div>
+          <div class="metric"><div class="metric-value">$9,291</div><div class="metric-label">Revenue</div></div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <span class="card-type email">Email</span>
+        <h3>"Can Mouth Rinses Impact Blood Pressure? The Nitric Oxide Debate"</h3>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-value hi">59.74%</div><div class="metric-label">Open Rate</div></div>
+          <div class="metric"><div class="metric-value">27,507</div><div class="metric-label">Recipients</div></div>
+          <div class="metric"><div class="metric-value">$8,046</div><div class="metric-label">Revenue</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-group">
+    <div class="portfolio-group-label">&#128241; SMS · Everyday Campaigns</div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <span class="card-type sms">SMS</span>
+        <h3>"Christmas Preparation Gifting Focused"</h3>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-value">30.5K</div><div class="metric-label">Sent</div></div>
+          <div class="metric"><div class="metric-value hi">12.41%</div><div class="metric-label">Conversion</div></div>
+          <div class="metric"><div class="metric-value">$8,064</div><div class="metric-label">Revenue</div></div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <span class="card-type sms">SMS</span>
+        <h3>"Dry Mouth Isn't Always Dehydration"</h3>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-value">36.6K</div><div class="metric-label">Sent</div></div>
+          <div class="metric"><div class="metric-value hi">7.55%</div><div class="metric-label">Conversion</div></div>
+          <div class="metric"><div class="metric-value">$5,262</div><div class="metric-label">Revenue</div></div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <span class="card-type sms">SMS</span>
+        <h3>"Can Water Flossers Hurt Your Gums?"</h3>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-value">36.5K</div><div class="metric-label">Sent</div></div>
+          <div class="metric"><div class="metric-value hi">7.57%</div><div class="metric-label">Conversion</div></div>
+          <div class="metric"><div class="metric-value">$5,558</div><div class="metric-label">Revenue</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-group">
+    <div class="portfolio-group-label">&#128717; Email · BFCM / Peak Season</div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <span class="card-type bfcm">BFCM Email</span>
+        <h3>"Black Friday Starts Now" Top Revenue Campaign</h3>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-value hi">63.81%</div><div class="metric-label">Open Rate</div></div>
+          <div class="metric"><div class="metric-value">27,561</div><div class="metric-label">Recipients</div></div>
+          <div class="metric"><div class="metric-value hi">$11,509</div><div class="metric-label">Revenue</div></div>
+          <div class="metric"><div class="metric-value">0.63%</div><div class="metric-label">CTR (Season High)</div></div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <span class="card-type bfcm">BFCM Email</span>
+        <h3>"Cyber Monday Starts Early"</h3>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-value hi">66.71%</div><div class="metric-label">Open Rate</div></div>
+          <div class="metric"><div class="metric-value">28,910</div><div class="metric-label">Recipients</div></div>
+          <div class="metric"><div class="metric-value">$4,531</div><div class="metric-label">Revenue</div></div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <span class="card-type bfcm">BFCM Email</span>
+        <h3>"BFCM Ends in 48 Hours"</h3>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-value hi">65.23%</div><div class="metric-label">Open Rate</div></div>
+          <div class="metric"><div class="metric-value">28,873</div><div class="metric-label">Recipients</div></div>
+          <div class="metric"><div class="metric-value">$5,452</div><div class="metric-label">Revenue</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-group">
+    <div class="portfolio-group-label">&#128717; SMS · BFCM / Peak Season</div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <span class="card-type bfcm">BFCM SMS</span>
+        <h3>"BFCM Selling Fast" Highest SMS Revenue</h3>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-value">29.33K</div><div class="metric-label">Sent</div></div>
+          <div class="metric"><div class="metric-value hi">13.65%</div><div class="metric-label">Conversion</div></div>
+          <div class="metric"><div class="metric-value hi">$14,570</div><div class="metric-label">Revenue</div></div>
+          <div class="metric"><div class="metric-value">1.60%</div><div class="metric-label">CTR</div></div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <span class="card-type bfcm">BFCM SMS</span>
+        <h3>"Cyber Monday Starts Early"</h3>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-value">24.97K</div><div class="metric-label">Sent</div></div>
+          <div class="metric"><div class="metric-value hi">27.91%</div><div class="metric-label">Conversion</div></div>
+          <div class="metric"><div class="metric-value">$8,858</div><div class="metric-label">Revenue</div></div>
+        </div>
+      </div>
+      <div class="portfolio-card">
+        <span class="card-type bfcm">BFCM SMS</span>
+        <h3>"BFCM Ends in 48 Hours"</h3>
+        <div class="card-metrics">
+          <div class="metric"><div class="metric-value">28.53K</div><div class="metric-label">Sent</div></div>
+          <div class="metric"><div class="metric-value hi">17.16%</div><div class="metric-label">Conversion</div></div>
+          <div class="metric"><div class="metric-value">$12,420</div><div class="metric-label">Revenue</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bfcm-note">
+    Maintained 60 to 66% email open rates throughout the entire BFCM period despite heavily saturated inboxes, a testament to copy quality, subject line craft, and earned audience trust.
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <p class="section-eyebrow" style="color:var(--accent2);">Let's Work Together</p>
+  <h2 class="section-title">Ready to build something that converts?</h2>
+  <p class="section-subtitle">Whether you need a full campaign strategy, a CX overhaul, or just someone who can finally write emails that people actually open, let's talk.</p>
+  <div class="contact-grid">
+    <a href="mailto:jerieljireh@gmail.com" class="contact-item">
+      <div class="contact-item-icon">&#9993;&#65039;</div>
+      <div class="contact-item-label">Email</div>
+      <div class="contact-item-value">jerieljireh@gmail.com</div>
+    </a>
+    <div class="contact-item">
+      <div class="contact-item-icon">&#128205;</div>
+      <div class="contact-item-label">Location</div>
+      <div class="contact-item-value">Philippines · Remote</div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Jeriel Jireh Quimbo · Customer Experience &amp; Email Marketing</footer>
+
+</body>
+</html>
